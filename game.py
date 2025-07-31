@@ -1,19 +1,19 @@
 class Game:
-    def guess(self, guessNumber):
-        self.assert_illegal_value(guessNumber)
+    def guess(self, guess_number):
+        self._assert_illegal_value(guess_number)
 
-    def assert_illegal_value(self, guessNumber):
-        if guessNumber is None:
+    def _assert_illegal_value(self, guess_number):
+        if guess_number is None:
             raise TypeError()
-        if len(guessNumber) != 3:
+        if len(guess_number) != 3:
             raise TypeError()
-        for number in guessNumber:
+        for number in guess_number:
             if not ord('0') <= ord(number) <= ord('9'):
                 raise TypeError()
-        if self.isDuplicatedNumber(guessNumber):
+        if self._is_duplicated_number(guess_number):
             raise TypeError()
 
-    def isDuplicatedNumber(self, guessNumber):
-        return guessNumber[0] == guessNumber[1] or \
-            guessNumber[0] == guessNumber[2] or \
-            guessNumber[1] == guessNumber[2]
+    def _is_duplicated_number(self, guess_number):
+        return guess_number[0] == guess_number[1] or \
+            guess_number[0] == guess_number[2] or \
+            guess_number[1] == guess_number[2]
