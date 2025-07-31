@@ -22,12 +22,8 @@ def test_exception_when_invalid_input(game, invalid_input):
 
 def test_return_solved_result_if_matched_number(game):
     game.question = "123"
-    result: GameResult = game.guess("123")
+    assert_matched_number(game.guess("123"), True, 3, 0)
 
-    assert result is not None
-    assert result.solved == True
-    assert result.strikes == 3
-    assert result.balls == 0
 
 def test_return_solved_result_if_unmatched_number(game):
     game.question = "123"
