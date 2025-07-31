@@ -10,7 +10,9 @@ def test_exception_when_input_is_none(game):
         game.guess(None)
 
 def test_exception_when_input_length_is_unmatched(game):
+    guessNumber = "12"
     try:
-        game.guess("12")
+        game.guess(guessNumber)
+        pytest.fail()
     except TypeError:
         pass
