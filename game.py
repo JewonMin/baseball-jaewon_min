@@ -1,5 +1,7 @@
 from game_result import *
 
+LEN3 = 3
+
 class Game:
     def __init__(self):
         self._question = ""
@@ -16,22 +18,23 @@ class Game:
         self._assert_illegal_value(guess_number)
         if guess_number == self._question:
             return GameResult(True,3,0)
-        strikes = balls = 0
-        for index in range(len(guess_number)):
-            if guess_number[index] == self._question[index]:
-                strikes += 1
-            else:
-                for question_index in range(len(self._question)):
-                    if guess_number[index] == self._question[question_index]:
-                        balls += 1
-                        break
+        strikes, balls = self.get_strikes_and_balls(guess_number)
         return GameResult(False, strikes,balls)
+
+    def get_strikes_and_balls(self, guess_number):
+        strikes = balls = 0
+        for i, digit in enumerate(guess_number):
+            if digit == self._question[i]:
+                strikes += 1
+            elif digit in self._question:
+                balls += 1
+        return strikes, balls
 
     def _assert_illegal_value(self, guess_number):
         if guess_number is None:
             raise TypeError("입력이 None입니다")
 
-        if len(guess_number) != 3:
+        if len(guess_number) != LEN3:
             raise TypeError("입력은 3자리 문자열이어야 합니다")
 
         if not guess_number.isdigit():
