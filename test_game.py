@@ -13,8 +13,7 @@ def assert_illegal_argument(game, guessNumber):
         pass
 
 def test_exception_when_input_is_none(game):
-    with pytest.raises(TypeError):
-        game.guess(None)
+    assert_illegal_argument(game,None)
 
 def test_exception_when_input_length_is_unmatched(game):
     assert_illegal_argument(game, "12")
