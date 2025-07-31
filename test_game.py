@@ -11,6 +11,10 @@ def test_exception_when_input_is_none(game):
 
 def test_exception_when_input_length_is_unmatched(game):
     guessNumber = "12"
+    assert_illegal_argument(game, guessNumber)
+
+
+def assert_illegal_argument(game, guessNumber):
     try:
         game.guess(guessNumber)
         pytest.fail()
