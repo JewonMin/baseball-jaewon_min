@@ -20,7 +20,12 @@ class Game:
         for index in range(len(guess_number)):
             if guess_number[index] == self._question[index]:
                 strikes += 1
-        return GameResult(False, strikes,0)
+            else:
+                for question_index in range(len(self._question)):
+                    if guess_number[index] == self._question[question_index]:
+                        balls += 1
+                        break
+        return GameResult(False, strikes,balls)
 
     def _assert_illegal_value(self, guess_number):
         if guess_number is None:
